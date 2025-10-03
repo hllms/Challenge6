@@ -14,12 +14,9 @@ namespace Challenge6
             int max = n - 1;
 
             var rotated = new int[n, n];       // <- temp buffer to avoid overwrite
-            var sb = new StringBuilder();
-            sb.Append("array[] = [");
 
             for (int i = 0; i < n; i++)
             {
-                sb.Append("[");
                 for (int j = 0; j < n; j++)
                 {
                     // 90° clockwise mapping: (i, j) -> (j, N-1-i)
@@ -29,20 +26,11 @@ namespace Challenge6
                     // move the value to the new location
                     rotated[ni, nj] = array[i, j];
 
-                    // keep your instructions string
-                    sb.Append($"[{ni}, {nj}]");
-                    if (j < n - 1) sb.Append(", ");
                 }
-                sb.Append("]");
-                if (i < n - 1) sb.Append(", ");
             }
-            sb.Append("]");
-
+            
             // copy rotated back into the original array
             Array.Copy(rotated, array, rotated.Length);
-
-            // Show the instruction string (optional)
-            Console.WriteLine(sb.ToString());
 
             // (Optional) print the rotated array to verify
             for (int r = 0; r < n; r++)
